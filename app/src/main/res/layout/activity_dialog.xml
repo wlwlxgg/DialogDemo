@@ -77,4 +77,19 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/dialog_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/sendsuccessful"/>
+    </LinearLayout>
+
 </RelativeLayout>

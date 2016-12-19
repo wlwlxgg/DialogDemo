@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 /**
  * Created by wlwlxgg on 2016/12/12.
@@ -15,14 +16,16 @@ public class MyDialog extends Dialog {
     private onOkClickListener okListener = null;
     private onCancelCickListener cancelListener = null;
     private Button ok, cancel;
-
+    private int tag;
+    private LinearLayout ll1, ll2;
     /**
      * 构造函数
      * 第二个参数为自定义样式
      * 在styles.xml设置
      */
-    public MyDialog(Context context) {
+    public MyDialog(Context context, int tag) {
         super(context,R.style.MyDialog);
+        this.tag = tag;
     }
 
     @Override
@@ -33,6 +36,15 @@ public class MyDialog extends Dialog {
     }
 
     private void initView() {
+        ll1 = (LinearLayout) findViewById(R.id.dialog);
+        ll2 = (LinearLayout) findViewById(R.id.dialog_2);
+        if (tag == 1) {
+            ll1.setVisibility(View.VISIBLE);
+            ll2.setVisibility(View.GONE);
+        }else {
+            ll1.setVisibility(View.GONE);
+            ll2.setVisibility(View.VISIBLE);
+        }
         ok = (Button)findViewById(R.id.dialog_pos);
         cancel = (Button)findViewById(R.id.dialog_nav);
         ok.setOnClickListener(new View.OnClickListener() {

@@ -29,12 +29,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn:
-                mDialog = new MyDialog(mContex);
+                mDialog = new MyDialog(mContex, 1);
                 mDialog.setOkListener(new MyDialog.onOkClickListener() {
                     @Override
                     public void onClick() {
-                        Toast.makeText(mContex, "您点击了确定键", Toast.LENGTH_SHORT).show();
-                        mDialog.dismiss();
+                        final MyDialog dialog = new MyDialog(mContex, 2);
+                        dialog.show();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(1000);
+                                    dialog.dismiss();
+                                    mDialog.dismiss();
+                                    MainActivity.this.finish();
+                                }catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+
                     }
                 });
                 mDialog.setCancelListener(new MyDialog.onCancelCickListener() {
